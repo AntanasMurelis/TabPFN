@@ -148,8 +148,8 @@ def get_default_spec(test_datasets, valid_datasets):
 
 def get_mlp_prior_hyperparameters(config):
     # Antanas
-    # from tabpfn.priors.utils import gamma_sampler_f
-    from priors.utils import gamma_sampler_f
+    from tabpfn.priors.utils import gamma_sampler_f
+    # from priors.utils import gamma_sampler_f
 
     config = {hp: (list(config[hp].values())[0]) if type(config[hp]) is dict else config[hp] for hp in config}
 
@@ -180,8 +180,8 @@ def get_gp_prior_hyperparameters(config):
 
 
 def get_meta_gp_prior_hyperparameters(config):
-    from priors.utils import trunc_norm_sampler_f
-    # from tabpfn.priors.utils import trunc_norm_sampler_f
+    # from priors.utils import trunc_norm_sampler_f
+    from tabpfn.priors.utils import trunc_norm_sampler_f
     config = {hp: (list(config[hp].values())[0]) if type(config[hp]) is dict else config[hp] for hp in config}
 
     if "outputscale_mean" in config:
@@ -197,11 +197,11 @@ def get_meta_gp_prior_hyperparameters(config):
 
 
 def get_model(config, device, should_train=True, verbose=False, state_dict=None, epoch_callback=None):
-    # import tabpfn.priors as priors
-    # from tabpfn.train import train, Losses
+    import tabpfn.priors as priors
+    from tabpfn.train import train, Losses
     # Antanas
-    import priors as priors
-    from train import train, Losses
+    # import priors as priors
+    # from train import train, Losses
     extra_kwargs = {}
     verbose_train, verbose_prior = verbose >= 1, verbose >= 2
     config['verbose'] = verbose_prior

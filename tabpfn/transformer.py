@@ -9,8 +9,8 @@ from einops import rearrange
 # Antnas
 # from tabpfn.layer import TransformerEncoderLayer, _get_activation_fn
 # from tabpfn.utils import SeqBN, bool_mask_to_att_mask
-from layer import TransformerEncoderLayer, _get_activation_fn
-from utils import SeqBN, bool_mask_to_att_mask
+from tabpfn.layer import TransformerEncoderLayer, _get_activation_fn
+from tabpfn.utils import SeqBN, bool_mask_to_att_mask
 
 
 
