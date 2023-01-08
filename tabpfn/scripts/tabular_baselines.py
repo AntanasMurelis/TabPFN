@@ -165,7 +165,7 @@ def eval_f(params, clf_, x, y, metric_used):
 def eval_complete_f(x, y, test_x, test_y, key, clf_, metric_used, max_time, no_tune):
     start_time = time.time()
     def stop(trial):
-        return time.time() - start_time > max_time, []
+        return time.time() - start_time > max_time
 
     if no_tune is None:
       default = eval_f({}, clf_, x, y, metric_used)
