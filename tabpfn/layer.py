@@ -140,11 +140,11 @@ class TransformerEncoderLayer(Module):
             
             src1 = self.pre_linear3(self.activation(self.pre_linear2(src1))) # <- linear layers to squeeze everything back up
             src1 = rearrange(src1, 'w (b h) 1 -> b h w', b = src_.size()[0]) 
-            src1 = self.pre_norm1(self.pre_dropout(src1) + src_) # <- residual layer
+            src1 = self.pre_norm1(self.pre_dropout(src1)) + src_ # <- residual layer
             src1_ = self.pre_linear5(self.activation(self.pre_linear4(src1)))
 
             src_left = self.self_attn(src1_[:single_eval_position], src1_[:single_eval_position], src1_[:single_eval_position])[0]
-            src_left = self.pre_norm2(self.pre_dropout(src_left) + src1_[:single_eval_position])
+            src_left = self.pre_norm2(self.pre_dropout(src_left)) + src1_[:single_eval_position]
             src_left_ = self.pre_linear7(self.activation(self.pre_linear6(src_left)))
             src_left_ = self.pre_norm2(src_left_) + src_left
             src_right = self.self_attn(src1_[single_eval_position:], src_left_, src_left_)[0]
@@ -160,10 +160,10 @@ class TransformerEncoderLayer(Module):
                                       key_padding_mask=src_key_padding_mask)[0]
         src_o = self.dropout1(src2) 
         if not self.pre_norm: # this gets RUN: pre_norm=False, not False = True
-            src_o = self.norm1(src_o + src1_)
+            src_o = self.norm1(src_o) + src1_
 
         if self.pre_norm: # NOT RUN: pre_norm=False
-            src_ = self.norm2(src_o + src1_)
+            src_ = self.norm2(src_o) + src1_
         else: # this gets RUN
             src_ = src_o
             

@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "itabpfn2"
-version = "0.0.01"
+version = "0.0.02"
 authors = []
 description = "Interface for using interfeature TabPFN and library to train TabPFN'"
 readme = "README.md"
