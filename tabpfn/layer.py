@@ -152,7 +152,7 @@ class TransformerEncoderLayer(Module):
 
             src2 = torch.cat([src_left, src_right], dim=0)
             
-        else: # this gets RUN 
+        else: 
             if self.recompute_attn: # recompute_attn=False by default, and is not changed in model=TransformerModel() in train.py)
                 src2 = checkpoint(self.self_attn, src_, src_, src_, src_key_padding_mask, True, src_mask)[0]
             else: # so we actually do this part
