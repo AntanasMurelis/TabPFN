@@ -147,6 +147,7 @@ class TransformerEncoderLayer(Module):
             src_left = self.pre_norm2(self.pre_dropout(src_left)) + src1_[:single_eval_position]
             src_left_ = self.pre_linear7(self.activation(self.pre_linear6(src_left)))
             src_left_ = self.pre_norm2(src_left_) + src_left
+            
             src_right = self.self_attn(src1_[single_eval_position:], src_left_, src_left_)[0]
             ###############################################################################
 
